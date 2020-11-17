@@ -1,28 +1,28 @@
 try {
     const Discord = require('discord.js');
     const client = new Discord.Client();
-    client.login(process.env.LOGIN) //TODO save the key in a decent and secure way
+    client.login(process.env.LOGIN) //Get token from env variable (fuck you randos on Github. You won't get my token that easily)
 
-    const channel = '778281298133254187';
-    const donne = ['235473795035430912'];
+    const channel = '778281298133254187'; //Voice channel code, edit accordingly
+    const donne = require('./donne.js'); //Get user IDs from different file
 
-    client.on('ready', () => {
+    client.on('ready', () => {  //Just debug
         console.log('Logged in');
     });
 
     client.on('voiceStateUpdate', (oldMember, newMember) => {
-        const newUserChannel = newMember.channelID;
+        const newUserChannel = newMember.channelID; //Some random stuff I saw on stackoverflow. It just works...
         const oldUserChannel = oldMember.channelID;
-        const textChannel = newMember.guild.channels.cache.find(channel => channel.name === 'botteria'); // Select spam channel
+        const textChannel = newMember.guild.channels.cache.find(channel => channel.name === 'botteria'); // Select spam channel, edit accordingly
         const User = client.users.cache.get(newMember.id); // Getting user by ID
 
         if (donne.includes(User.id)) { // Checking if the user exists
 
             if (newUserChannel === channel) {  //If voice channel is...
-                textChannel.send(`${User} Ciao Marta!`);    //THAT?S IT
+                textChannel.send(`${User} Ciao Marta!`);    //THAT'S IT
                 console.log(`Joined ${User}`)   //Debug
             } else if (oldUserChannel === channel && newUserChannel !== channel) {    //If client left voice channel. Not really useful, might remove
-                console.log(`Left ${User}`)
+                console.log(`Left ${User}`)     //You guessed it. Debug
             }
         }
 
