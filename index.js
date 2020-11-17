@@ -13,7 +13,7 @@ try {
     client.on('voiceStateUpdate', (oldMember, newMember) => {
         const newUserChannel = newMember.channelID; //Some random stuff I saw on stackoverflow. It just works...
         const oldUserChannel = oldMember.channelID;
-        const textChannel = newMember.guild.channels.cache.find(channel => channel.name === 'botteria'); // Select spam channel, edit accordingly
+        const textChannel = newMember.guild.channels.cache.find(channel => channel.name === 'execute-orders'); // Select spam channel, edit accordingly
         const User = client.users.cache.get(newMember.id); // Getting user by ID
 
         if (donne.includes(User.id)) { // Checking if the user exists
