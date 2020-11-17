@@ -3,8 +3,8 @@ try {
     const client = new Discord.Client();
     client.login(process.env.LOGIN) //TODO save the key in a decent and secure way
 
-    const channel = process.env.CHANNEL;
-    const donne = [process.env.DONNE];
+    const channel = '778281298133254187';
+    const donne = ['235473795035430912'];
 
     client.on('ready', () => {
         console.log('Logged in');
