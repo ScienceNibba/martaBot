@@ -1,10 +1,10 @@
 try {
     const Discord = require('discord.js');
     const client = new Discord.Client();
-    client.login('YOYO') //TODO save the key in a decent and secure way
+    client.login(process.env.LOGIN) //TODO save the key in a decent and secure way
 
-    const channel = 'YUYU';
-    const donne = ['YEYE'];
+    const channel = process.env.CHANNEL;
+    const donne = [process.env.DONNE];
 
     client.on('ready', () => {
         console.log('Logged in');
