@@ -5,7 +5,6 @@ try {
 
     const channel = '760492676864147461'; //Voice channel code, edit accordingly
     const donne = require('./donne.js'); //Get user IDs from different file
-    let flag = false;
 
     client.on('ready', () => {  //Just debug
         console.log('Logged in');
@@ -19,8 +18,7 @@ try {
 
         if (donne.includes(User.id)) { // Checking if the user exists
 
-            if (newUserChannel === channel && flag == false) {  //If voice channel is...
-                flag = true;
+            if (newUserChannel === channel && oldUserChannel !== channel) {  //If voice channel is...
                 textChannel.send(`${User} Ciao Marta!`);    //THAT'S IT
                 console.log(`Joined ${User}`)   //Debug
             } else if (oldUserChannel === channel && newUserChannel !== channel) {    //If client left voice channel. Not really useful, might remove
