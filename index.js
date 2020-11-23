@@ -18,12 +18,11 @@ try {
 
         if (donne.includes(User.id)) { // Checking if the user exists
 
-            if (newUserChannel === channel && oldUserChannel !== channel) {  //If voice channel is...
+            if (channel.includes(newUserChannel) && oldUserChannel !== newUserChannel) {  //If voice channel is...
                 textChannel.send(`${User} Ciao Marta!`);    //THAT'S IT
                 console.log(`Joined ${User}`)   //Debug
             } else if (oldUserChannel === channel && newUserChannel !== channel) {    //If client left voice channel. Not really useful, might remove
                 console.log(`Left ${User}`)     //You guessed it. Debug
-                flag = false;
             }
         }
 
