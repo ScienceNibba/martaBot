@@ -3,7 +3,7 @@ try {
     const client = new Discord.Client();
     client.login(process.env.LOGIN) //Get token from env variable (fuck you randos on Github. You won't get my token that easily)
 
-    const channel = '760492676864147461'; //Voice channel code, edit accordingly
+    const channel = require('./canali.js'); //Voice channel code, edit accordingly
     const donne = require('./donne.js'); //Get user IDs from different file
 
     client.on('ready', () => {  //Just debug
