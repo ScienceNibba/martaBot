@@ -19,7 +19,7 @@ try {
         if (donne.includes(User.id)) { // Checking if the user exists
 
             if (channel.includes(newUserChannel) && oldUserChannel !== newUserChannel) {  //If voice channel is...
-                textChannel.send(`${User} Ciao Marta!`);    //THAT'S IT
+                textChannel.send(`${User} Ciao Marta!`).then(msg => setTimeout(function(){msg.delete()},300000));    //THAT'S IT, wait and delete own message
                 console.log(`Joined ${User}`)   //Debug
             } else if (oldUserChannel === channel && newUserChannel !== channel) {    //If client left voice channel. Not really useful, might remove
                 console.log(`Left ${User}`)     //You guessed it. Debug
