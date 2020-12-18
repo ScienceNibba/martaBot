@@ -49,7 +49,7 @@ try {
                         if (msg.content.substring(0, 10) === '-ping-nerd') {    //Cool embed, only for nerds
                             msg.channel.send(new Discord.MessageEmbed()
                                 .setColor('#38f57d')
-                                .setDescription('Richesta approvata con response status code ' + code)
+                                .setDescription(`Richesta approvata con response status code ${code}`)
                             );
                         }
                     }
@@ -58,7 +58,7 @@ try {
                         if (msg.content.substring(0, 10) === '-ping-nerd') {    //Cool embed, again only for nerds
                             msg.channel.send(new Discord.MessageEmbed()
                                 .setColor('#cc0e0e')
-                                .setDescription('Richesta respinta con response status code ' + code)
+                                .setDescription(`Richesta respinta con response status code ${code}`)
                             );
                         }
                     }
