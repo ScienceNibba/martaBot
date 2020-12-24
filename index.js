@@ -92,7 +92,7 @@ try {
                     console.error(error);
                 });
 
-                req.end();      //Always end your requestsm, folks
+                req.end();      //Always end your requests, folks
             }
         }
     });
