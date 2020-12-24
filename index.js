@@ -15,8 +15,20 @@ try {
     };
 
 
-    client.on('ready', () => {  //Just debug
-        console.log('Logged in');
+    client.on('ready', () => {  //Put random code in here
+        console.log('Logged in');   //Just debug
+
+        //Ugly code for Chirstmas wishes (let this be my very own ugly Christmas sweater)
+        target = new Date(2020, 11, 25, 00, 00, 0, 0);   //Target date(input Christmas here) - YYYY-MM-DD-hh-mm-ss-ms
+
+        countDown = target - new Date();    //On boot starts the countdown to target date
+        setTimeout(() => {  //Awesome code goes in here!
+            const chrismasChannel = client.channels.cache.get('780426427416707113');
+
+            chrismasChannel.send('@everyone Tanti auguri di buon Natale all\'intera Vibe Zone!\:santa\:');  //The message
+            console.log('Sending Christmas wishes') //Debug because why not?
+
+        }, countDown); //The countdown
     });
 
     client.on('voiceStateUpdate', (oldMember, newMember) => {
@@ -28,7 +40,7 @@ try {
         if (donne.includes(User.id)) { // Checking if the user exists
 
             if (channel.includes(newUserChannel) && oldUserChannel !== newUserChannel) {  //If voice channel is...
-                textChannel.send(`${User} Ciao Marta!`).then(msg => setTimeout(function(){msg.delete()}, 300000));    //THAT'S IT, wait and delete own message
+                textChannel.send(`${User} Ciao Marta!`).then(msg => setTimeout(function () { msg.delete() }, 300000));    //THAT'S IT, wait and delete own message
                 console.log(`Joined ${User}`)   //Debug
             } else if (oldUserChannel === channel && newUserChannel !== channel) {    //If client left voice channel. Not really useful, might remove
                 console.log(`Left ${User}`)     //You guessed it. Debug
