@@ -6,7 +6,7 @@ try {
     const channel = require('./canali.js'); //Voice channel code, edit accordingly
     const donne = require('./donne.js'); //Get user IDs from different file
 
-    const cucina = '778281298133254187' //cucina channel
+    const cucina = '788380384529612830' //cucina channel
     const orders = '760496195184492565'   //execute-orders channel
 
 
