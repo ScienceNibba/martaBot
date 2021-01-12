@@ -19,8 +19,21 @@ try {
     };
 
 
-    client.on('ready', () => {  //Just debug
-        console.log('Logged in');
+    client.on('ready', () => {  //Put random code in here
+        console.log('Logged in');   //Just debug
+
+        /*//Ugly code for Chirstmas wishes (let this be my very own ugly Christmas sweater)
+        target = new Date(2020, 11, 25, 0, 5, 0, 0);   //Target date(input Christmas here) - YYYY-MM-DD-hh-mm-ss-ms
+
+        countDown = target - new Date();    //On boot starts the countdown to target date
+        console.log(countDown);
+        setTimeout(() => {  //Awesome code goes in here!
+            const chrismasChannel = client.channels.cache.get('780426427416707113');
+
+            chrismasChannel.send('@everyone Tanti auguri di buon Natale all\'intera Vibe Zone!\:santa\:');  //The message
+            console.log('Sending Christmas wishes') //Debug because why not?
+
+        }, countDown); //The countdown*/
     });
 
     client.on('voiceStateUpdate', (oldMember, newMember) => {
