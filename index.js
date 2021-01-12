@@ -6,6 +6,10 @@ try {
     const channel = require('./canali.js'); //Voice channel code, edit accordingly
     const donne = require('./donne.js'); //Get user IDs from different file
 
+    const cucina = '778281298133254187' //cucina channel
+    const orders = '760496195184492565'   //execute-orders channel
+
+
     const https = require('https');
     const options = {
         hostname: 'didattica.polito.it',
@@ -25,19 +29,32 @@ try {
         const textChannel = newMember.guild.channels.cache.find(channel => channel.name === 'ciao-marta'); // Select spam channel, edit accordingly
         const User = client.users.cache.get(newMember.id); // Getting user by ID
 
-        if (donne.includes(User.id)) { // Checking if the user exists
+        //Ciao Marta
 
+        if (donne.includes(User.id)) { // Checking if the user exists
             if (channel.includes(newUserChannel) && oldUserChannel !== newUserChannel) {  //If voice channel is...
-                textChannel.send(`${User} Ciao Marta!`).then(msg => setTimeout(function(){msg.delete()}, 300000));    //THAT'S IT, wait and delete own message
+                textChannel.send(`${User} Ciao Marta!`).then(msg => setTimeout(function () {msg.delete()}, 300000));    //THAT'S IT, wait and delete own message
                 console.log(`Joined ${User}`)   //Debug
             } else if (oldUserChannel === channel && newUserChannel !== channel) {    //If client left voice channel. Not really useful, might remove
                 console.log(`Left ${User}`)     //You guessed it. Debug
             }
         }
+
+        //Back to the kitchen
+
+        if (newUserChannel === cucina && oldUserChannel !== newUserChannel && !newMember.member.hasPermission('ADMINISTRATOR')) {   //If channel is 'cucina'
+            newMember.member.setNickname(`[In cucina]${newMember.member.nickname}`);
+        }
+        else if (oldUserChannel === cucina && newMember.member.nickname !== null && !newMember.member.hasPermission('ADMINISTRATOR')) {     //If user left 'cucina'
+            newMember.member.setNickname(newMember.member.nickname.replace('[In cucina]', ''));
+        }
     })
 
     client.on('message', msg => {
-        if (msg.channel.id === '760496195184492565') {      //If channel is 'execute-orders'
+
+        //Ping polito
+
+        if (msg.channel.id === orders) {      //If channel is 'execute-orders'
             if (msg.content.substring(0, 5) === '-ping') {      //Check command
                 msg.channel.send('Adesso telefono al poli');
 
@@ -80,7 +97,7 @@ try {
                     console.error(error);
                 });
 
-                req.end();      //Always end your requestsm, folks
+                req.end();      //Always end your requests, folks
             }
         }
     });
