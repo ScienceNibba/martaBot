@@ -56,9 +56,14 @@ try {
         //Back to the kitchen
 
         if (newUserChannel === cucina && oldUserChannel !== newUserChannel && !newMember.member.hasPermission('ADMINISTRATOR')) {   //If channel is 'cucina'
-            newMember.member.setNickname(`[In cucina]${newMember.member.nickname}`);
+            if (newMember.member.nickname === null) {
+                newMember.member.setNickname(`[In cucina]${newMember.member.user.username}`);
+            }
+            else {
+                newMember.member.setNickname(`[In cucina]${newMember.member.nickname}`);
+            }
         }
-        else if (oldUserChannel === cucina && newMember.member.nickname !== null && !newMember.member.hasPermission('ADMINISTRATOR')) {     //If user left 'cucina'
+        else if (oldUserChannel === cucina && oldUserChannel !== newUserChannel && newMember.member.nickname !== null && !newMember.member.hasPermission('ADMINISTRATOR')) {     //If user left 'cucina'
             newMember.member.setNickname(newMember.member.nickname.replace('[In cucina]', ''));
         }
     })
