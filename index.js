@@ -46,9 +46,9 @@ try {
         if (donne.includes(User.id)) { // Checking if the user exists
             if (channel.includes(newUserChannel) && oldUserChannel !== newUserChannel) {  //If voice channel is...
                 textChannel.send(`${User} Ciao Marta!`).then(msg => setTimeout(function () { msg.delete() }, 300000));    //THAT'S IT, wait and delete own message
-                console.log(`Joined ${newMember.member.nickname === null ? newMember.member.user.username : newMember.member.nickname}`)   //Log
-            } else if (oldUserChannel === channel && newUserChannel !== channel) {    //If client left voice channel - as per V42 for some reason it doesn't work
-                console.log(`Left ${newMember.member.nickname === null ? newMember.member.user.username : newMember.member.nickname}`)     //Log
+                console.log(`Joined ${newMember.member.nickname === null ? newMember.member.user.username : newMember.member.nickname}`);   //Log
+            } else if (channel.includes(oldUserChannel) && newUserChannel !== oldUserChannel) {    //If client left voice channel - as per V42 for some reason it doesn't work
+                console.log(`Left ${newMember.member.nickname === null ? newMember.member.user.username : newMember.member.nickname}`);     //Log
             }
         }
 
@@ -77,7 +77,7 @@ try {
             if (msg.content.substring(0, 5) === '-ping') {      //Check command
                 msg.channel.send('Adesso telefono al poli');
                 
-                console.log(`${newMember.member.nickname === null ? newMember.member.user.username : newMember.member.nickname} pinged PoliTO`)   //Log
+                console.log(`${msg.member.nickname === null ? msg.member.user.username : msg.member.nickname} pinged PoliTO`)   //Log
 
                 let req = https.request(options, res => {   //HTTPS request
                     code = res.statusCode;      //Response code, conveniently stored

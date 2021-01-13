@@ -5,5 +5,7 @@ module.exports =
     '780424185645236255', //Analisi 1
     '780424441577340989', //Informatica
     '780424365979336704', //Chimica
-    '780425439981600808'  //Amministrazione Bot
+    '780425439981600808',  //Amministrazione Bot
+    
+    '778281298133254187'   //Debug
 ];
