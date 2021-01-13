@@ -9,7 +9,6 @@ try {
     const cucina = '788380384529612830' //cucina channel
     const orders = '760496195184492565'   //execute-orders channel
 
-
     const https = require('https');
     const options = {
         hostname: 'didattica.polito.it',
@@ -46,10 +45,10 @@ try {
 
         if (donne.includes(User.id)) { // Checking if the user exists
             if (channel.includes(newUserChannel) && oldUserChannel !== newUserChannel) {  //If voice channel is...
-                textChannel.send(`${User} Ciao Marta!`).then(msg => setTimeout(function () {msg.delete()}, 300000));    //THAT'S IT, wait and delete own message
-                console.log(`Joined ${User}`)   //Debug
-            } else if (oldUserChannel === channel && newUserChannel !== channel) {    //If client left voice channel. Not really useful, might remove
-                console.log(`Left ${User}`)     //You guessed it. Debug
+                textChannel.send(`${User} Ciao Marta!`).then(msg => setTimeout(function () { msg.delete() }, 300000));    //THAT'S IT, wait and delete own message
+                console.log(`Joined ${newMember.member.nickname === null ? newMember.member.user.username : newMember.member.nickname}`)   //Log
+            } else if (oldUserChannel === channel && newUserChannel !== channel) {    //If client left voice channel - as per V42 for some reason it doesn't work
+                console.log(`Left ${newMember.member.nickname === null ? newMember.member.user.username : newMember.member.nickname}`)     //Log
             }
         }
 
@@ -58,9 +57,11 @@ try {
         if (newUserChannel === cucina && oldUserChannel !== newUserChannel && !newMember.member.hasPermission('ADMINISTRATOR')) {   //If channel is 'cucina'
             if (newMember.member.nickname === null) {
                 newMember.member.setNickname(`[In cucina]${newMember.member.user.username}`);
+                console.log(`${newMember.member.nickname === null ? newMember.member.user.username : newMember.member.nickname} entered the kitchen`)   //Log
             }
             else {
                 newMember.member.setNickname(`[In cucina]${newMember.member.nickname}`);
+                console.log(`${newMember.member.nickname === null ? newMember.member.user.username : newMember.member.nickname} left the kitchen`)   //Log
             }
         }
         else if (oldUserChannel === cucina && oldUserChannel !== newUserChannel && newMember.member.nickname !== null && !newMember.member.hasPermission('ADMINISTRATOR')) {     //If user left 'cucina'
@@ -75,6 +76,8 @@ try {
         if (msg.channel.id === orders) {      //If channel is 'execute-orders'
             if (msg.content.substring(0, 5) === '-ping') {      //Check command
                 msg.channel.send('Adesso telefono al poli');
+                
+                console.log(`${newMember.member.nickname === null ? newMember.member.user.username : newMember.member.nickname} pinged PoliTO`)   //Log
 
                 let req = https.request(options, res => {   //HTTPS request
                     code = res.statusCode;      //Response code, conveniently stored
